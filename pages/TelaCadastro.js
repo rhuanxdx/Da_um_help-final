@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   inputbox:{
     paddingHorizontal:20,
     paddingVertical:8,
-    backgroundColor:'#F5F4F4',
+    backgroundColor:'##e7e9e8',
     borderRadius:25,
     shadowColor: '#171717',
     shadowOffset: {width: 2, height: 3},

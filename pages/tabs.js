@@ -8,6 +8,7 @@ import Perfil from './TelaPerfil';
 import Icon from 'react-native-vector-icons/Ionicons'
 
 
+
 const  Tab = createBottomTabNavigator();
 
 const Tabs = () =>{

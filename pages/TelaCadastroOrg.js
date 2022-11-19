@@ -8,7 +8,7 @@ export default function TelaCadastro({navigation}) {
   return (
 
     <View style={styles.center}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}> 
         <Image style={styles.logo} source={require('../assets/logo.png')}/>
 
       <View style={styles.inputbox}>
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
 
     height:250,
     width:250,
+    marginLeft:30,
     marginBottom:30
   },
 

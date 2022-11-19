@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image } from 'react-native';
-import { Dimensions } from 'react-native';
-import { Linking } from 'react-native';
 
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 export default function TelaLogin({navigation}) {
 
@@ -17,19 +12,20 @@ export default function TelaLogin({navigation}) {
         <Text style={styles.tit}> Bem vindo ao Da um Help </Text>
        
         <Text style={styles.txt}> Somos um portal para facilitar na comunicaçãoentre pessoas dispostas a fazer o bem assim como você, e organizações que precisam do nosso apoio para continuar com seus incríveis projetos! </Text>
+      
+        <Pressable style={styles.btnLogin} onPress={()=>navigation.navigate("Loginreal")}>
+          <Text style={styles.btnTxtLogin}>Entrar</Text>
+        </Pressable>
+        
         <Pressable style={styles.btnCadastro} onPress={()=>navigation.navigate("Cadastro")}>
           <Text style={styles.btnTxt}>Cadastra-se</Text>
         </Pressable>
-        <Pressable style={styles.btnGoogle}>
-          <Text style={styles.btnTxtGoogle}>Logar com o Google</Text>
-        </Pressable>
-        <Pressable style={styles.btnFb}>
-          <Text style={styles.btnTxtFb}>Logar com o Facebook</Text>
+
+        <Pressable style={styles.btnCadastro} onPress={()=>navigation.navigate("CadastroOrg")}>
+          <Text style={styles.btnTxtOng}>Cadastra-se como ONG</Text>
         </Pressable>
 
-        <Text style={{color: 'purple', marginTop: 20}}
-          onPress={()=>navigation.navigate("CadastroOrg")}>Se cadastre como Ong
-        </Text>
+
         
 
     </View>
@@ -57,7 +53,8 @@ const styles = StyleSheet.create({
 
   tit:{
       fontSize:20,
-      color:'#2C2828'
+      color:'#2C2828',
+      fontWeight:'bold',
   },
 
   txt:{
@@ -73,6 +70,13 @@ const styles = StyleSheet.create({
   btnTxt:{
     fontSize:20,
     color:'#2C2828',
+    paddingHorizontal:50
+    
+  },
+
+  btnTxtOng:{
+    fontSize:20,
+    color:'#2C2828',
     
   },
 
@@ -80,58 +84,35 @@ const styles = StyleSheet.create({
     marginTop:20,
     paddingHorizontal:90,
     paddingVertical:9,
-    backgroundColor:'#F4EFEF',
+    backgroundColor:'#e7e9e8',
     borderRadius:15,
     shadowColor: '#171717',
     shadowOffset: {width: 2, height: 3},
     shadowOpacity: 0.1,
     shadowRadius: 4,
-  
+    maxWidth:400,
 
   },
 
-    btnFb:{
+  btnLogin:{
     marginTop:20,
-    paddingHorizontal:40,
-    paddingVertical:12,
-    backgroundColor:'#395185',
+    paddingHorizontal:90,
+    paddingVertical:9,
+    backgroundColor:'#38C7A5',
     borderRadius:15,
     shadowColor: '#171717',
     shadowOffset: {width: 2, height: 3},
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    maxWidth:400,
 
   },
-  
 
-    btnTxtFb:{
+  btnTxtLogin:{
     fontSize:20,
-    color:'#F4EFEF',
-    whiteSpace:'nowrap',
-    textAlign:'right'
-
+    color:'white',
+    paddingHorizontal:78
   },
-
-    btnGoogle:{
-    marginTop:20,
-    paddingHorizontal:50,
-    paddingVertical:12,
-    backgroundColor:'#F4EFEF',
-    borderRadius:15,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-
-  },
-
-    btnTxtGoogle:{
-    fontSize:20,
-    color:'#2C2828',
-    whiteSpace:'nowrap'
-
-  },
-
 
   
   });
