@@ -1,14 +1,17 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Topbar from '../components/TopBar';
-
+import Not from '../components/Not'
 
 export default function App() {
 
     return(
       <View style={styles.center}>
         <Topbar/>
-        <Text> Notificação </Text>
+          <Not msg = "JoãoMarcio_Alves curtiu sua publicação"/>
+          <Not msg = "Nena.Martins curtiu sua publicação"/>
+          <Not msg = "CaioLIndo curtiu sua publicação"/>
+          <Not msg = "DiegoCosta curtiu sua publicação"/>
       </View>
     );
 
