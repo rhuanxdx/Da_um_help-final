@@ -11,6 +11,7 @@ import Tabs from './pages/tabs';
 import CadastroOrg from './pages/TelaCadastroOrg'
 import Loginreal from './pages/Loginreal';
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -28,6 +29,7 @@ export default function App() {
         <Stack.Screen name = "CadastroOrg" component = {CadastroOrg}/>
         <Stack.Screen name = "Tabs" component = {Tabs}/>
         <Stack.Screen name = "Loginreal" component = {Loginreal}/>
+        <Stack.Screen name = "Perfil" component = {Perfil}/>
 
       </Stack.Navigator>
 

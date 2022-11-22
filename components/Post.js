@@ -1,21 +1,20 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 
 
-export default function Post() {
+export default function Post({navigation}) {
     return (
       <View style={styles.fullpost}>
-
+        <Pressable onPress={()=>navigation.navigate("Login")} >
             <View style={styles.org}>
+
                 <Image style={styles.fotoOrg} source={require('../assets/post.png')}/>
                 <Text style={styles.nomeOrg}>ONG Nossa Esperança</Text>
             </View>
             <Image style={styles.foto} source={require('../assets/post.png')}/>
-            
-            <Image style={styles.like} source={require('../assets/heart.png')}/>
 
             <Text style={styles.texto} >Projeto realizado hoje pela nossa equipe no bairro povo da gente boa. Estamos muito contentes de ajudar essas pessoas maravilhosas!!! Em breve nos vemos novamente :) </Text>
-
+            </Pressable>
       </View>
     );
   }

@@ -16,7 +16,6 @@ export default function Post() {
                 <Text style={styles.nomeOrg}>ONG Nossa Esperança</Text>
             </View>
             <Image style={styles.foto} source={require('../assets/post5.png')}/>
-            <Image style={styles.like} source={require('../assets/heart.png')}/>
             <Text style={styles.texto} >Cuidem de nossas crianças pois elas são o futuro de tudo que temos</Text>
 
       </View>
