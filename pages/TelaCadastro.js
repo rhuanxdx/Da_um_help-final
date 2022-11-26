@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';   
 import { Text, View, StyleSheet, TextInput, Pressable, Image } from 'react-native';
-import Axios from "axios";
+import Axios from 'axios';
 
 export default function TelaCadastro({navigation}) {
 
@@ -14,25 +14,12 @@ export default function TelaCadastro({navigation}) {
   const [telefone, setTelefone] = useState();
 
 
-  const handleChangeValues = (value) => {
-    setValues((prevValue) =>({
-      ...prevValue,
-      [value.target.name]: value.target.value,
-    }));
-  };
-
-  const handleClinckButton = () => {
-    Axios.post("http://localhost:3001/register",{
-      EmailDoador: values.email,
-      NomeDoador: values.nomeDoador,
-      idade: values.dataNascimento,
-      CPF: values.cpf,
-      Telefone:values.telefone,
-      Senha: values.senha,
-    }).then((responde) => {
+  const registro = () =>{
+    Axios.post('https://navy-rainbow-ring.glitch.me/cadastrarDoador').then((response)=>{
       console.log(response);
-    });
-  };
+    })
+  }
+  
 
   return (
 
@@ -40,12 +27,22 @@ export default function TelaCadastro({navigation}) {
 
         <Image style={styles.logo} source={require('../assets/logo.png')}/>
 
+        <View style={styles.inputbox}>
+              <TextInput 
+                  style={styles.txtInput}
+                  placeholder = "Informe seu Email"
+                  keyboardType="text"
+                  onChangeText = {(value) => setEmail(value)}
+                  >
+              </TextInput>
+      </View>
+
       <View style={styles.inputbox}>
               <TextInput 
                   style={styles.txtInput}
                   placeholder = "Informe seu Nome"
                   keyboardType="text"
-                  onChangeText = {value => setNomeDoador(value)}
+                  onChangeText = {(value) => setNomeDoador(value)}
                   >
               </TextInput>
       </View>
@@ -55,7 +52,7 @@ export default function TelaCadastro({navigation}) {
                   style={styles.txtInput}
                   placeholder = "Insira sua senha"
                   keyboardType="text"
-                  onChangeText = {value => setSenha(value)}
+                  onChangeText = {(value) => setSenha(value)}
                   >
               </TextInput>
       </View>
@@ -65,7 +62,7 @@ export default function TelaCadastro({navigation}) {
                   style={styles.txtInput}
                   placeholder = "Repita sua senha"
                   keyboardType="text"
-                  onChangeText = {value => setVerifSenha(value)}
+                  onChangeText = {(value) => setVerifSenha(value)}
                   >
               </TextInput>
       </View>
@@ -75,7 +72,7 @@ export default function TelaCadastro({navigation}) {
                   style={styles.txtInput}
                   placeholder = "Informe seu cpf"
                   keyboardType="text"
-                  onChangeText = {value => setCpf(value)}
+                  onChangeText = {(value) => setCpf(value)}
                   >
               </TextInput>
       </View>
@@ -85,7 +82,7 @@ export default function TelaCadastro({navigation}) {
                   style={styles.txtInput}
                   placeholder = "Informe sua data de nascimento"
                   keyboardType="text"
-                  onChangeText = {value => setDataNascimento(value)}
+                  onChangeText = {(value) => setDataNascimento(value)}
                   >
               </TextInput>
       </View>
@@ -94,7 +91,7 @@ export default function TelaCadastro({navigation}) {
                   style={styles.txtInput}
                   placeholder = "Informe seu Telefone"
                   keyboardType="text"
-                  onChangeText = {value => setTelefone(value)}
+                  onChangeText = {(value) => setTelefone(value)}
                   >
               </TextInput>
       </View>
@@ -102,7 +99,7 @@ export default function TelaCadastro({navigation}) {
 
 
 
-        <Pressable style={styles.btnCadastro} onPress={()=>navigation.navigate("Tabs")}>
+        <Pressable style={styles.btnCadastro} onPress={registro}>
           <Text style={styles.btnTxt}>Cadastra-se</Text>
         </Pressable>
 
@@ -133,14 +130,14 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 2, height: 3},
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    marginBottom:10
+    marginBottom:-2
   },
 
   logo:{
 
     height:250,
     width:250,
-    marginBottom:30
+    marginBottom:10
   },
 
   btnTxt:{
