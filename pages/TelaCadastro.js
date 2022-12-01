@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity } from 'react-native';
-import axios from "axios";
-import { form } from 'react';
+import axios from 'axios';
 
 export default function TelaCadastro({ navigation }) {
 
@@ -14,51 +13,26 @@ export default function TelaCadastro({ navigation }) {
   const [telefone, setTelefone] = useState('');
 
 
-  /*const handleChangeValues = (value) => {
-    setValues((prevValue) =>({
-      ...prevValue,
-      [value.target.name]: value.target.value,
-    }));
-  };*/
+  const registro = () =>{
+  axios.post('https://daumhelp.glitch.me/cadastrarDoador', {
+    EmailDoador: email,
+    NomeDoador: nomeDoador,
+    idade: idade,
+    CPF: cpf,
+    Telefone: telefone,
+    Senha: senha
 
 
-  function cadastraUser() {
-    async function cadastro() {
-      try {
-        const resultado = await axios.post("https://daumhelp.glitch.me/cadastrarDoador", {
-          EmailDoador: email,
-          NomeDoador: nomeDoador,
-          idade: idade,
-          Cpf: cpf,
-          Telefone: telefone,
-          Senha: senha,
-        });
-       
-        const { data } = resultado
 
-        console.log(data)
-      } catch (e) {
-        console.log(e.response.data)
-      }
 
-      const options = {
-        method: 'Post',
-        url: 'https://daumhelp.glitch.me/cadastrarDoador',
-        headers: {'Content-Type':
-        'application/json'},
-        data: {}
-      }
-      axios.request(options).then(function(response){
-        console.log(response.data);
-      }).catch(function (error){
-        console.error(error);
-      });
-
-    }
-
-    cadastro()
-  }
-
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
   
 
 
@@ -131,11 +105,10 @@ export default function TelaCadastro({ navigation }) {
           onChangeText={value => setSenha(value)}
         >
         </TextInput>
-      </View>
-    
+      </View>    
 
       <TouchableOpacity style={styles.btnCadastro} onPress={() => {
-        cadastraUser(); navigation.navigate("Tabs")
+        registro(); navigation.navigate("Tabs")
       }}>
         <Text style={styles.btnTxt}>Cadastra-se</Text>
       </TouchableOpacity>
