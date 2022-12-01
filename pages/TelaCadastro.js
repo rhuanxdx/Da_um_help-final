@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 
 export default function TelaCadastro({ navigation }) {
@@ -40,8 +40,7 @@ export default function TelaCadastro({ navigation }) {
   
 
     <View style={styles.center}>
-
-
+      <ScrollView showsVerticalScrollIndicator={false}> 
       <Image style={styles.logo} source={require('../assets/logo.png')} />
 
       <View style={styles.inputbox}>
@@ -113,7 +112,7 @@ export default function TelaCadastro({ navigation }) {
         <Text style={styles.btnTxt}>Cadastra-se</Text>
       </TouchableOpacity>
 
-
+      </ScrollView>
     </View>
   );
 }
