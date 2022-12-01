@@ -1,108 +1,144 @@
 import * as React from 'react';
-import { useState } from 'react';   
-import { Text, View, StyleSheet, TextInput, Pressable, Image } from 'react-native';
-import Axios from 'axios';
+import { useState } from 'react';
+import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity } from 'react-native';
+import axios from "axios";
+import { form } from 'react';
 
-export default function TelaCadastro({navigation}) {
+export default function TelaCadastro({ navigation }) {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [verifSenha, setVerifSenha] = useState('');
   const [cpf, setCpf] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
-  const [nomeDoador, setNomeDoador] = useState();
-  const [telefone, setTelefone] = useState();
+  const [idade, setIdade] = useState('');
+  const [nomeDoador, setNomeDoador] = useState('');
+  const [telefone, setTelefone] = useState('');
 
 
-  const registro = () =>{
-    Axios.post('https://navy-rainbow-ring.glitch.me/cadastrarDoador').then((response)=>{
-      console.log(response);
-    })
+  /*const handleChangeValues = (value) => {
+    setValues((prevValue) =>({
+      ...prevValue,
+      [value.target.name]: value.target.value,
+    }));
+  };*/
+
+
+  function cadastraUser() {
+    async function cadastro() {
+      try {
+        const resultado = await axios.post("https://daumhelp.glitch.me/cadastrarDoador", {
+          EmailDoador: email,
+          NomeDoador: nomeDoador,
+          idade: idade,
+          Cpf: cpf,
+          Telefone: telefone,
+          Senha: senha,
+        });
+       
+        const { data } = resultado
+
+        console.log(data)
+      } catch (e) {
+        console.log(e.response.data)
+      }
+
+      const options = {
+        method: 'Post',
+        url: 'https://daumhelp.glitch.me/cadastrarDoador',
+        headers: {'Content-Type':
+        'application/json'},
+        data: {}
+      }
+      axios.request(options).then(function(response){
+        console.log(response.data);
+      }).catch(function (error){
+        console.error(error);
+      });
+
+    }
+
+    cadastro()
   }
+
   
 
+
   return (
+  
 
     <View style={styles.center}>
 
-        <Image style={styles.logo} source={require('../assets/logo.png')}/>
 
-        <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Informe seu Email"
-                  keyboardType="text"
-                  onChangeText = {(value) => setEmail(value)}
-                  >
-              </TextInput>
+      <Image style={styles.logo} source={require('../assets/logo.png')} />
+
+      <View style={styles.inputbox}>
+        <TextInput style={styles.txtInput}
+          id="emailDoador"
+          name="emailDoador"
+          placeholder="Informe seu E-mail"
+          type="text"
+          onChangeText={value => setEmail(value)}
+        >
+        </TextInput>
       </View>
 
       <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Informe seu Nome"
-                  keyboardType="text"
-                  onChangeText = {(value) => setNomeDoador(value)}
-                  >
-              </TextInput>
+        <TextInput style={styles.txtInput}
+          id="nomeDoador"
+          name="nomeDoador"
+          placeholder="Informe seu Nome"
+          type="text"
+          onChangeText={value => setNomeDoador(value)}
+        >
+        </TextInput>
+      </View>
+      
+      <View style={styles.inputbox}>
+        <TextInput
+          style={styles.txtInput}
+          placeholder="Informe sua idade"
+          keyboardType="text"
+          onChangeText={value => setIdade(value)}
+        >
+        </TextInput>
       </View>
 
       <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Insira sua senha"
-                  keyboardType="text"
-                  onChangeText = {(value) => setSenha(value)}
-                  >
-              </TextInput>
+        <TextInput
+          style={styles.txtInput}
+          placeholder="Informe seu cpf"
+          keyboardType="text"
+          onChangeText={value => setCpf(value)}
+        >
+        </TextInput>
       </View>
 
       <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Repita sua senha"
-                  keyboardType="text"
-                  onChangeText = {(value) => setVerifSenha(value)}
-                  >
-              </TextInput>
+        <TextInput
+          style={styles.txtInput}
+          placeholder="Informe seu Telefone"
+          keyboardType="text"
+          onChangeText={value => setTelefone(value)}
+        >
+        </TextInput>
       </View>
 
       <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Informe seu cpf"
-                  keyboardType="text"
-                  onChangeText = {(value) => setCpf(value)}
-                  >
-              </TextInput>
+        <TextInput style={styles.txtInput}
+          placeholder="Insira sua senha"
+          id="senha"
+          name="senha"
+          type="password"
+          onChangeText={value => setSenha(value)}
+        >
+        </TextInput>
       </View>
+    
 
-        <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Informe sua data de nascimento"
-                  keyboardType="text"
-                  onChangeText = {(value) => setDataNascimento(value)}
-                  >
-              </TextInput>
-      </View>
-      <View style={styles.inputbox}>
-              <TextInput 
-                  style={styles.txtInput}
-                  placeholder = "Informe seu Telefone"
-                  keyboardType="text"
-                  onChangeText = {(value) => setTelefone(value)}
-                  >
-              </TextInput>
-      </View>
-
-
-
-
-        <Pressable style={styles.btnCadastro} onPress={registro}>
-          <Text style={styles.btnTxt}>Cadastra-se</Text>
-        </Pressable>
-
+      <TouchableOpacity style={styles.btnCadastro} onPress={() => {
+        cadastraUser(); navigation.navigate("Tabs")
+      }}>
+        <Text style={styles.btnTxt}>Cadastra-se</Text>
+      </TouchableOpacity>
 
 
     </View>
@@ -110,71 +146,72 @@ export default function TelaCadastro({navigation}) {
 }
 
 
+
 const styles = StyleSheet.create({
-  center:{
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center',
-    flexDirection:'column',
-    textAlign:'center',
-    backgroundColor:'E5E5E5',
-    padding:10,
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    textAlign: 'center',
+    backgroundColor: 'E5E5E5',
+    padding: 10,
   },
 
-  inputbox:{
-    paddingHorizontal:20,
-    paddingVertical:8,
-    backgroundColor:'##e7e9e8',
-    borderRadius:25,
+  inputbox: {
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    backgroundColor: '#F5F4F4',
+    borderRadius: 25,
     shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
+    shadowOffset: { width: 2, height: 3 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    marginBottom:-2
+    marginBottom: 10
   },
 
-  logo:{
+  logo: {
 
-    height:250,
-    width:250,
-    marginBottom:10
+    height: 250,
+    width: 250,
+    marginBottom: 30
   },
 
-  btnTxt:{
-    fontSize:30,
-    whiteSpace:'nowrap',
-    color:'#FFFFFF',
-    
+  btnTxt: {
+    fontSize: 30,
+    whiteSpace: 'nowrap',
+    color: '#FFFFFF',
+
   },
 
-  btnCadastro:{
-    paddingHorizontal:65,
-    paddingVertical:13,
-    backgroundColor:'#38C7A5',
-    borderRadius:15,
+  btnCadastro: {
+    paddingHorizontal: 65,
+    paddingVertical: 13,
+    backgroundColor: '#38C7A5',
+    borderRadius: 15,
     shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
+    shadowOffset: { width: 2, height: 3 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    marginTop:15
-  
+    marginTop: 15
+
   },
 
-  txtInput:{
+  txtInput: {
 
-    marginVertical:10,
-    border:0,
+    marginVertical: 10,
+    border: 0,
     borderBottomWidth: 1.5,
     borderColor: 'rgb(200,200,200)',
-    width:265,
+    width: 265,
     outlineStyle: 'none',
     outline: 'none',
     paddingVertical: 0,
-    placeholderTextColor:'red' 
+    placeholderTextColor: 'red'
 
 
   },
 
 
-  
-  });
+
+});
