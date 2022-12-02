@@ -4,6 +4,8 @@ import { Text, View, StyleSheet, TextInput, Pressable, Image } from 'react-nativ
 
 export default function TelaLogin({navigation}) {
 
+
+
   return (
 
     <View style={styles.center}>

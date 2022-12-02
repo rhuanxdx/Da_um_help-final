@@ -195,6 +195,7 @@ export default function TelaCadastro({navigation}) {
                   style={styles.txtInput}
                   placeholder = "Informe sua senha"
                   keyboardType="text"
+                  secureTextEntry={true}
                   onChangeText={value => setSenha(value)}
                   >
               </TextInput>

@@ -99,6 +99,7 @@ export default function TelaCadastro({ navigation }) {
         <TextInput style={styles.txtInput}
           placeholder="Insira sua senha"
           id="senha"
+          secureTextEntry={true}
           name="senha"
           type="password"
           onChangeText={value => setSenha(value)}
@@ -107,7 +108,7 @@ export default function TelaCadastro({ navigation }) {
       </View>    
 
       <TouchableOpacity style={styles.btnCadastro} onPress={() => {
-        registro(); navigation.navigate("Tabs")
+        registro(); navigation.navigate("Login")
       }}>
         <Text style={styles.btnTxt}>Cadastra-se</Text>
       </TouchableOpacity>

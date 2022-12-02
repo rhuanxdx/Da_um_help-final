@@ -1,9 +1,22 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image, ScrollView } from 'react-native';
-
+import {useState,useContext,useEffect} from 'react';
+import { AuthContext } from '../context/Auth';
 
 
 export default function Loginreal({navigation}) {
+
+  const [EmailDoador, setEmailDoador] = useState('');
+  const [Senha, setSenha] = useState('');
+
+
+  const [loginStatus,setLoginStatus] = useState('');
+
+  const {Login} = useContext(AuthContext);
+
+  const handleLogin = () => {
+    Login(EmailDoador,Senha);
+  }
 
   return (
 
@@ -15,7 +28,8 @@ export default function Loginreal({navigation}) {
               <TextInput 
                   style={styles.txtInput}
                   placeholder = "Informe seu email"
-                  keyboardType="text"
+                  keyboardType="email-address"
+                  onChangeText={value => setEmailDoador(value)}
                   >
               </TextInput>
       </View>
@@ -24,13 +38,15 @@ export default function Loginreal({navigation}) {
               <TextInput 
                   style={styles.txtInput}
                   placeholder = "Informe sua senha"
+                  secureTextEntry={true}
                   keyboardType="text"
+                  onChangeText={value => setSenha(value)}
                   >
               </TextInput>
       </View>
 
 
-        <Pressable style={styles.btnCadastro} onPress={()=>navigation.navigate("Tabs")}>
+        <Pressable style={styles.btnCadastro} onPress={handleLogin}>
           <Text style={styles.btnTxt}>      Entrar</Text>
         </Pressable>
 

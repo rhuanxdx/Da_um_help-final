@@ -6,11 +6,12 @@ import Cadastro from './pages/TelaCadastro';
 import Feed from './pages/TelaFeed';
 import Pesquisa from './pages/TelaPesquisa';
 import Notificaçao from './pages/TelaNotificação'
-import Perfil from './pages/TelaPerfil';
+import PerfilDoador from './pages/TelaPerfil';
 import Tabs from './pages/tabs';
 import CadastroOrg from './pages/TelaCadastroOrg'
 import Loginreal from './pages/Loginreal';
-
+import AuthProvider from './context/Auth';
+import EditarDoador from './pages/EditarDoador'
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,8 @@ export default function App() {
 
     <NavigationContainer>
 
+      <AuthProvider>
+
       <Stack.Navigator screenOptions= { {headerShown: false}}
         initialRouteName = "Login">
         <Stack.Screen name = "Login" component = {Login}/>
@@ -29,11 +32,12 @@ export default function App() {
         <Stack.Screen name = "CadastroOrg" component = {CadastroOrg}/>
         <Stack.Screen name = "Tabs" component = {Tabs}/>
         <Stack.Screen name = "Loginreal" component = {Loginreal}/>
-        <Stack.Screen name = "Perfil" component = {Perfil}/>
+        <Stack.Screen name = "PerfilDoador" component = {PerfilDoador}/>
+        <Stack.Screen name = "EditarDoador" component = {EditarDoador}/>
 
       </Stack.Navigator>
 
-
+      </AuthProvider>
 
 
     </NavigationContainer>
