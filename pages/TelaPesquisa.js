@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet,FlatList, Pressable } from 'react-native';
 import Topbar from '../components/TopBar';
-import SearchBar from '../components/SearchBar'
 import OrgSearch from '../components/OrgSearch';
-import OrgSearch2 from '../components/OrgSearch2';
-import OrgSearch3 from '../components/OrgSearch2';
 
 import axios from 'axios';
 import {useState,useEffect} from 'react';
@@ -37,7 +34,7 @@ export default function TelaPesquisa({navigation}) {
     <Pressable onPress = {() => {navigation.navigate('PerfilOng',{
       idOrg: item.idOrg})}}>
 
-    < OrgSearch NomeOrg = {item.NomeOrg} Cidade = {item.Cidade} Telefone = {item.Telefone}/>
+    < OrgSearch NomeOrg = {item.NomeOrg} Cidade = {item.Cidade} Telefone = {item.Telefone} ChavePix = {item.ChavePix}/>
     </Pressable>
   );
 

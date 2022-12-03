@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-
+import { vh, vw, vmax } from 'react-native-expo-viewport-units';
 
 export default function Not(props) {
     return (
@@ -21,7 +21,7 @@ export default function Not(props) {
     org:{
         display:'flex',
         flexDirection:'row',
-        marginBottom:8,
+        marginBottom:vh(0.5),
         textAlign:'center',
         alignItems:'center',
     },
@@ -33,10 +33,10 @@ export default function Not(props) {
 
     fullpost:{
         backgroundColor:'#e7e9e8',
-        padding:5,
-        minWidth:380,
+        padding:vh(1),
+        width:vw(95),
         borderRadius:7,
-        marginBottom:5,
+        marginBottom:vh(1),
     },
 
   });

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, Pressable, Alert } from 'react-native';
 import Topbar from '../components/TopBar';
 import axios from 'axios';
+import { vh, vw, vmax } from 'react-native-expo-viewport-units';
 //chamar dados importa isso 
 import {useState,useContext,useEffect} from 'react';
 import { AuthContext } from '../context/Auth';
@@ -71,17 +72,21 @@ const MostrarPopUp = ()=>{
 
         <Text style={styles.info2} >Segurança</Text>
 
-        <View style={styles.prop} >
+        <View style={styles.center}>
+
+        <View style={styles.editar}>
           <Pressable onPress={() => {navigation.navigate("EditarDoador")}}>
-            <Text>Editar Perfil</Text>
+            <Text style={styles.editarTxt}>Editar Perfil</Text>
           </Pressable>
-
-          <Pressable onPress={DeletarConta}>
-            <Text>Exlcuir Perfil</Text>
-          </Pressable>
-
         </View>
 
+        <View style={styles.excluir} >
+          <Pressable onPress={DeletarConta}>
+            <Text style={styles.excluirTxt}>Exlcuir Perfil</Text>
+          </Pressable>
+        </View>
+
+        </View>
 
       </View>
     );
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
   },
 
   info2:{
-    paddingLeft:10,
+    paddingLeft:vw(4),
     marginTop:10,
     fontWeight:'bold',
     fontSize:15
@@ -157,5 +162,34 @@ const styles = StyleSheet.create({
     marginTop:5,
     paddingBottom:10
   },
+
+  excluir:{
+    marginTop: vh(1),
+    backgroundColor:'red',
+    width: vmax(50),
+    padding: vh(1.5),
+    borderRadius:20
+
+  },
+
+  excluirTxt:{
+    textAlign:'center',
+    fontSize:18,
+    color:'white',
+  },
+
+  editarTxt:{
+    textAlign:'center',
+    fontSize:18,
+    color:'white',
+  },
+
+  editar:{
+    marginTop: vh(1),
+    backgroundColor:'#38C7A5',
+    width: vmax(50),
+    padding: vh(1.5),
+    borderRadius:20
+  }
   
   });

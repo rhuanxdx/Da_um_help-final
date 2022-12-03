@@ -1,22 +1,35 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
-
+import { vh, vw, vmax } from 'react-native-expo-viewport-units';
 
 
 export default function OrgSearch(props) {
     return (
-        <View style={styles.full}>
-            <View style={styles.fotonome}>
-                    <Image style={styles.foto} source={require('../assets/post.png')}/>
-                    <Text style={styles.texto} >{props.NomeOrg}</Text>
+        <View style={styles.center} >
+            <View style={styles.full}>
+                <View style={styles.fotonome}>
+                        <Image style={styles.foto} source={require('../assets/branco.png')}/>
+                        <Text style={styles.NomeOrg} >{props.NomeOrg}</Text>
+                </View>
+                <Text style={styles.texto2} >Telefone: {props.Telefone}</Text>
+                <Text style={styles.texto2} >Cidade: {props.Cidade}</Text>
+                <Text style={styles.texto2} >Pix: {props.ChavePix}</Text>
+                
             </View>
-            <Text style={styles.texto2} >Cidade: {props.Cidade}</Text>
-            <Text style={styles.texto2} >Telefone: {props.Telefone}</Text>
         </View>
     );
   }
 
   const styles = StyleSheet.create({
+
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        textAlign: 'center',
+        backgroundColor: 'E5E5E5',
+      },
 
     foto:{
         height:100,
@@ -26,28 +39,30 @@ export default function OrgSearch(props) {
 
     full:{
         backgroundColor:'#e7e9e8',
-        padding:5,
-        maxWidth:400,
-        minHeight:110,
-        maxHeight:110,
+        padding:vw(1),
+        width:vmax(45),
+        height: vmax(13.5),
         borderRadius:7,
-        marginBottom:30,
+        marginBottom:vh(2),
     },
 
-    texto:{
-        marginTop:2,
-        fontSize:18,
+    NomeOrg:{
+        marginLeft:vw(2),
+        textAlign:'center',
+        fontSize:20,
         fontWeight:'bold',
-        marginLeft:10
+        paddingTop:vh(0.9),
     },
 
     texto2:{
-        marginLeft:110
+        marginLeft:vw(27),
+        marginTop:vh(-4.4)
     },
 
     fotonome:{
         display:'flex',
         flexDirection:'row',
+        textAlign:'center'
     },
 
   });

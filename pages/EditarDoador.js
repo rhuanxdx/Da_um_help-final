@@ -44,6 +44,7 @@ export default function EditarDoador({ navigation }) {
           placeholder="Insira sua senha"
           id="senha"
           name="senha"
+          secureTextEntry={true}
           value = {Senha}
           type="password"
           onChangeText={value => setSenha(value)}

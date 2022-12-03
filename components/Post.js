@@ -5,7 +5,7 @@ import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 export default function Post({navigation}) {
     return (
       <View style={styles.fullpost}>
-        <Pressable onPress={()=>navigation.navigate("Login")} >
+        <Pressable>
             <View style={styles.org}>
 
                 <Image style={styles.fotoOrg} source={require('../assets/post.png')}/>

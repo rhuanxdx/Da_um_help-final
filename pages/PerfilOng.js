@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image, ScrollView,ActivityIndicator, } from 'react-native';
 import axios from 'axios';
 import { vh, vw, vmax } from 'react-native-expo-viewport-units';
-
+import TopBar from '../components/TopBar'
 
 export default function TelaCadastro({navigation,route}) {
 
@@ -44,30 +44,19 @@ export default function TelaCadastro({navigation,route}) {
       
       (
         <View style={styles.center}>
+        <TopBar/>
         <ScrollView showsVerticalScrollIndicator={false}> 
-          <Image style={styles.logo} source={require('../assets/logo.png')}/>
-        
-          <View style={styles.inputbox}>
-                <TextInput 
-                    style={styles.txtInput}
-                    placeholder = "Informe o Nome da Organização"
-                    keyboardType="text"
-                    value = {Perfil.NomeOrg}
-                    >
-                </TextInput>
+          <Text style={styles.NomeOrg} >{Perfil.NomeOrg}</Text>
+          <Text style={styles.endereço} >Cidade: {Perfil.Cidade} CEP:{Perfil.CEP}</Text>
+          <Text style={styles.endereço} >{Perfil.Bairro}, {Perfil.Rua} {Perfil.Numero} {Perfil.Complemento}</Text>
+          <Text style={styles.desc} >Mollit culpa do labore sunt. Velit qui ea laborum occaecat. Veniam deserunt voluptate veniam quis sit officia sint id id non eu nostrud. Cillum labore voluptate laboris proident sunt.</Text>
+          <Text style={styles.info} >Contato</Text>
+          <Text style={styles.endereço} >{Perfil.EmailOrg}</Text>
+          <Text style={styles.endereço} >{Perfil.Telefone}</Text>
+          <View style={styles.help}>
+             <Text style={styles.helpTxt}>Nos ajude via PIX</Text>
+             <Text style={styles.helpTxt}>{Perfil.ChavePix}</Text>
           </View>
-  
-          <View style={styles.inputbox}>
-                <TextInput 
-                    style={styles.txtInput}
-                    placeholder = "Informe o CNPJ da Organização"
-                    keyboardType="text"
-                    value = {Perfil.ChavePix}
-                    >
-                </TextInput>
-          </View>
-  
-  
        </ScrollView>
           </View>
       )}
@@ -89,57 +78,11 @@ const styles = StyleSheet.create({
     padding:10,
   },
 
-  inputbox:{
-    paddingHorizontal: vw(10),
-    paddingVertical: vh(0.8),
-    backgroundColor: '#F5F4F4',
-    borderRadius: 25,
-    marginBottom: vh(1)
-  },
-
-  logo:{
-    marginLeft:vmax(5),
-    height: 250,
-    width: 250,
-    marginBottom: 30
-  },
-
-  btnTxt:{
+  NomeOrg:{
+    fontWeight:'bold',
     fontSize:30,
-    color:'#FFFFFF',
-    textAlign:'center'
-  },
-
-  btnCadastro:{
-    paddingHorizontal: vw(10),
-    paddingVertical: vh(1),
-    backgroundColor: '#38C7A5',
-    borderRadius: 15,
-    marginTop: vh(2)
-  },
-
-  txtInput:{
-    marginVertical: 10,
-    border: 0,
-    borderBottomWidth: 1.5,
-    borderColor: 'rgb(200,200,200)',
-    width: 265,
-    outlineStyle: 'none',
-    outline: 'none',
-    paddingVertical: 0,
-  },
-
-  txtInputgrande:{
-
-    marginVertical:10,
-    border:0,
-    borderBottomWidth: 1.5,
-    borderColor: 'rgb(200,200,200)',
-    width:265,
-    outlineStyle: 'none',
-    outline: 'none',
-    paddingVertical: 0,
-    fontSize:12
+    color:'#181818',
+    textAlign:'center',
   },
 
   ViewLoading: {
@@ -150,6 +93,40 @@ const styles = StyleSheet.create({
     alignItems: 'center'
    },
 
+   endereço:{
+    marginTop:vh(0.5),
+    fontSize:17,
+    textAlign:'center',
+    color:'grey'
+   },
 
+   desc:{
+    marginTop:vh(0.5),
+    fontSize:17,
+    textAlign:'center',
+    color:'#181818',
+    paddingVertical:vh(2)
+   },
+
+   info:{
+    textAlign:'center',
+    marginTop:vh(1),
+    fontWeight:'bold',
+    fontSize:15
+  },
+
+  help:{
+    marginTop:vh(2),
+    backgroundColor:'#38C7A5',
+    padding:vh(1),
+    borderRadius:15,
+  },
+
+  helpTxt:{
+    textAlign:'center',
+    fontSize:20,
+    color:'white',
+    fontWeight:'bold'
+  },
   
   });

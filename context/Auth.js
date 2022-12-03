@@ -36,7 +36,7 @@ function AuthProvider ({children}){
         else{
             setUserDoador(response);
             alert('Operação feita com sucesso');
-            navigation.navigate('PerfilDoador');
+            navigation.navigate('Tabs');
         }
   });
     }
