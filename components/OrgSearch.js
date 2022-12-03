@@ -2,14 +2,16 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 
 
-export default function OrgSearch({}) {
+
+export default function OrgSearch(props) {
     return (
         <View style={styles.full}>
             <View style={styles.fotonome}>
                     <Image style={styles.foto} source={require('../assets/post.png')}/>
-                    <Text style={styles.texto} >Amigos da Cachorrada</Text>
+                    <Text style={styles.texto} >{props.NomeOrg}</Text>
             </View>
-            <Text style={styles.texto2} >Somos uma ONG de Leopoldina Minas Gerais, e estamos a 15 anos ajudando animais de rua</Text>
+            <Text style={styles.texto2} >Cidade: {props.Cidade}</Text>
+            <Text style={styles.texto2} >Telefone: {props.Telefone}</Text>
         </View>
     );
   }
@@ -40,7 +42,6 @@ export default function OrgSearch({}) {
     },
 
     texto2:{
-        marginTop:-76,
         marginLeft:110
     },
 

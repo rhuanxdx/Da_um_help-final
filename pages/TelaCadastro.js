@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity } from 'react-native';
-import axios from "axios";
-import { form } from 'react';
+import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native';
+import axios from 'axios';
+import { vh, vw, vmax } from 'react-native-expo-viewport-units';
 
 export default function TelaCadastro({ navigation }) {
 
@@ -14,51 +14,26 @@ export default function TelaCadastro({ navigation }) {
   const [telefone, setTelefone] = useState('');
 
 
-  /*const handleChangeValues = (value) => {
-    setValues((prevValue) =>({
-      ...prevValue,
-      [value.target.name]: value.target.value,
-    }));
-  };*/
+  const registro = () =>{
+  axios.post('https://daumhelp.glitch.me/cadastrarDoador', {
+    EmailDoador: email,
+    NomeDoador: nomeDoador,
+    idade: idade,
+    CPF: cpf,
+    Telefone: telefone,
+    Senha: senha
 
 
-  function cadastraUser() {
-    async function cadastro() {
-      try {
-        const resultado = await axios.post("https://daumhelp.glitch.me/cadastrarDoador", {
-          EmailDoador: email,
-          NomeDoador: nomeDoador,
-          idade: idade,
-          Cpf: cpf,
-          Telefone: telefone,
-          Senha: senha,
-        });
-       
-        const { data } = resultado
 
-        console.log(data)
-      } catch (e) {
-        console.log(e.response.data)
-      }
 
-      const options = {
-        method: 'Post',
-        url: 'https://daumhelp.glitch.me/cadastrarDoador',
-        headers: {'Content-Type':
-        'application/json'},
-        data: {}
-      }
-      axios.request(options).then(function(response){
-        console.log(response.data);
-      }).catch(function (error){
-        console.error(error);
-      });
-
-    }
-
-    cadastro()
-  }
-
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
   
 
 
@@ -66,8 +41,7 @@ export default function TelaCadastro({ navigation }) {
   
 
     <View style={styles.center}>
-
-
+      <ScrollView showsVerticalScrollIndicator={false}> 
       <Image style={styles.logo} source={require('../assets/logo.png')} />
 
       <View style={styles.inputbox}>
@@ -126,21 +100,21 @@ export default function TelaCadastro({ navigation }) {
         <TextInput style={styles.txtInput}
           placeholder="Insira sua senha"
           id="senha"
+          secureTextEntry={true}
           name="senha"
           type="password"
           onChangeText={value => setSenha(value)}
         >
         </TextInput>
-      </View>
-    
+      </View>    
 
       <TouchableOpacity style={styles.btnCadastro} onPress={() => {
-        cadastraUser(); navigation.navigate("Tabs")
+        registro(); navigation.navigate("Login")
       }}>
         <Text style={styles.btnTxt}>Cadastra-se</Text>
       </TouchableOpacity>
 
-
+      </ScrollView>
     </View>
   );
 }
@@ -159,25 +133,22 @@ const styles = StyleSheet.create({
   },
 
   inputbox: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingHorizontal: vw(10),
+    paddingVertical: vh(0.8),
     backgroundColor: '#F5F4F4',
     borderRadius: 25,
-    shadowColor: '#171717',
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    marginBottom: 10
+    marginBottom: vh(1)
   },
 
   logo: {
-
+    marginLeft:vmax(4),
     height: 250,
     width: 250,
     marginBottom: 30
   },
 
   btnTxt: {
+    textAlign:'center',
     fontSize: 30,
     whiteSpace: 'nowrap',
     color: '#FFFFFF',
@@ -185,16 +156,11 @@ const styles = StyleSheet.create({
   },
 
   btnCadastro: {
-    paddingHorizontal: 65,
-    paddingVertical: 13,
+    paddingHorizontal: vw(10),
+    paddingVertical: vh(1),
     backgroundColor: '#38C7A5',
     borderRadius: 15,
-    shadowColor: '#171717',
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    marginTop: 15
-
+    marginTop: vh(2)
   },
 
   txtInput: {
@@ -207,8 +173,6 @@ const styles = StyleSheet.create({
     outlineStyle: 'none',
     outline: 'none',
     paddingVertical: 0,
-    placeholderTextColor: 'red'
-
 
   },
 

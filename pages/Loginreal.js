@@ -1,9 +1,23 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image, ScrollView } from 'react-native';
-
+import {useState,useContext,useEffect} from 'react';
+import { AuthContext } from '../context/Auth';
+import { vh, vw, vmin, vmax } from 'react-native-expo-viewport-units';
 
 
 export default function Loginreal({navigation}) {
+
+  const [EmailDoador, setEmailDoador] = useState('');
+  const [Senha, setSenha] = useState('');
+
+
+  const [loginStatus,setLoginStatus] = useState('');
+
+  const {Login} = useContext(AuthContext);
+
+  const handleLogin = () => {
+    Login(EmailDoador,Senha);
+  }
 
   return (
 
@@ -15,7 +29,8 @@ export default function Loginreal({navigation}) {
               <TextInput 
                   style={styles.txtInput}
                   placeholder = "Informe seu email"
-                  keyboardType="text"
+                  keyboardType="email-address"
+                  onChangeText={value => setEmailDoador(value)}
                   >
               </TextInput>
       </View>
@@ -24,14 +39,16 @@ export default function Loginreal({navigation}) {
               <TextInput 
                   style={styles.txtInput}
                   placeholder = "Informe sua senha"
+                  secureTextEntry={true}
                   keyboardType="text"
+                  onChangeText={value => setSenha(value)}
                   >
               </TextInput>
       </View>
 
 
-        <Pressable style={styles.btnCadastro} onPress={()=>navigation.navigate("Tabs")}>
-          <Text style={styles.btnTxt}>      Entrar</Text>
+        <Pressable style={styles.btnCadastro} onPress={handleLogin}>
+          <Text style={styles.btnTxt}>Entrar</Text>
         </Pressable>
 
 
@@ -57,39 +74,29 @@ const styles = StyleSheet.create({
     paddingHorizontal:20,
     paddingVertical:8,
     backgroundColor:'#F5F4F4',
-    borderRadius:25,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
     marginBottom:10
   },
 
-  
 
   logo:{
-
+    marginTop: vh(5),
     height:250,
     width:250,
-    marginLeft:30,
-    marginBottom:30
+    marginLeft:vmax(3),
+    marginBottom:vh(5)
   },
 
   btnTxt:{
+    height: vmin(11),
     fontSize:30,
     color:'#FFFFFF',
+    textAlign:'center',
     
   },
 
   btnCadastro:{
-    paddingHorizontal:65,
-    paddingVertical:13,
     backgroundColor:'#38C7A5',
     borderRadius:15,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
     marginTop:15
   
   },
@@ -105,20 +112,6 @@ const styles = StyleSheet.create({
     outline: 'none',
     paddingVertical: 0,
     placeholderTextColor:'red' 
-  },
-
-  txtInputgrande:{
-
-    marginVertical:10,
-    border:0,
-    borderBottomWidth: 1.5,
-    borderColor: 'rgb(200,200,200)',
-    width:265,
-    outlineStyle: 'none',
-    outline: 'none',
-    paddingVertical: 0,
-    placeholderTextColor:'red',
-    fontSize:12
   },
 
 
