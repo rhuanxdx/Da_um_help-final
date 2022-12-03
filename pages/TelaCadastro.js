@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
+import { vh, vw, vmax } from 'react-native-expo-viewport-units';
 
 export default function TelaCadastro({ navigation }) {
 
@@ -132,25 +133,22 @@ const styles = StyleSheet.create({
   },
 
   inputbox: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingHorizontal: vw(10),
+    paddingVertical: vh(0.8),
     backgroundColor: '#F5F4F4',
     borderRadius: 25,
-    shadowColor: '#171717',
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    marginBottom: 10
+    marginBottom: vh(1)
   },
 
   logo: {
-
+    marginLeft:vmax(4),
     height: 250,
     width: 250,
     marginBottom: 30
   },
 
   btnTxt: {
+    textAlign:'center',
     fontSize: 30,
     whiteSpace: 'nowrap',
     color: '#FFFFFF',
@@ -158,16 +156,11 @@ const styles = StyleSheet.create({
   },
 
   btnCadastro: {
-    paddingHorizontal: 65,
-    paddingVertical: 13,
+    paddingHorizontal: vw(10),
+    paddingVertical: vh(1),
     backgroundColor: '#38C7A5',
     borderRadius: 15,
-    shadowColor: '#171717',
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    marginTop: 15
-
+    marginTop: vh(2)
   },
 
   txtInput: {
@@ -180,8 +173,6 @@ const styles = StyleSheet.create({
     outlineStyle: 'none',
     outline: 'none',
     paddingVertical: 0,
-    placeholderTextColor: 'red'
-
 
   },
 

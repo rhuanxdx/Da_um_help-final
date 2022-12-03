@@ -5,6 +5,14 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.pdvrx.DaumHelp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ae868f8f-607c-43b6-a0ad-a45f7289f88d"
+      }
+    }
   }
 }

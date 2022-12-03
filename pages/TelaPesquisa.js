@@ -1,24 +1,56 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet,FlatList, Pressable } from 'react-native';
 import Topbar from '../components/TopBar';
 import SearchBar from '../components/SearchBar'
 import OrgSearch from '../components/OrgSearch';
 import OrgSearch2 from '../components/OrgSearch2';
 import OrgSearch3 from '../components/OrgSearch2';
 
-export default function App() {
+import axios from 'axios';
+import {useState,useEffect} from 'react';
+
+export default function TelaPesquisa({navigation}) {
+
+  const [entradas, setEntradas] = useState({});
+
+  useEffect(()=> {
+
+    async function buscarOngs(){
+
+      await axios.get('https://daumhelp.glitch.me/MostrarOngs')
+      .then((response) => {
+
+        console.log(response.data);
+
+        if(response.data.message == 'Nao encontrado'){
+            alert('Sem dados encontrados');
+        }
+        else{
+            setEntradas(response);
+        }
+  });
+    }
+    buscarOngs();
+  },[])
+
+  const renderItem = ({ item }) => (
+    <Pressable onPress = {() => {navigation.navigate('PerfilOng',{
+      idOrg: item.idOrg})}}>
+
+    < OrgSearch NomeOrg = {item.NomeOrg} Cidade = {item.Cidade} Telefone = {item.Telefone}/>
+    </Pressable>
+  );
 
     return(
       <View style={styles.center}>
         <Topbar/>       
-        <SearchBar/>
-        <Text  style={styles.txt} >Sugestões para você</Text>
-        <Text  style={styles.txt2} >Animais</Text>
-        <OrgSearch/>
-        <Text  style={styles.txt2} >Reciclagem</Text>
-        <OrgSearch2/>
-        <Text  style={styles.txt2} >Causas Sociais</Text>
-        <OrgSearch3/>
+        <FlatList
+
+      data = {entradas.data}
+      keyExtractor={item => item.idOrg}
+      renderItem = {renderItem}
+
+      />
       </View>
       
     );

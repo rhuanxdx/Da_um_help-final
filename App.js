@@ -5,13 +5,14 @@ import Login from './pages/TelaLogin';
 import Cadastro from './pages/TelaCadastro';
 import Feed from './pages/TelaFeed';
 import Pesquisa from './pages/TelaPesquisa';
-import Notificaçao from './pages/TelaNotificação'
+import Notificaçao from './pages/TelaNotificação';
 import PerfilDoador from './pages/TelaPerfil';
 import Tabs from './pages/tabs';
-import CadastroOrg from './pages/TelaCadastroOrg'
+import CadastroOrg from './pages/TelaCadastroOrg';
 import Loginreal from './pages/Loginreal';
 import AuthProvider from './context/Auth';
-import EditarDoador from './pages/EditarDoador'
+import EditarDoador from './pages/EditarDoador';
+import PerfilOng from './pages/PerfilOng';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,8 @@ export default function App() {
         <Stack.Screen name = "Loginreal" component = {Loginreal}/>
         <Stack.Screen name = "PerfilDoador" component = {PerfilDoador}/>
         <Stack.Screen name = "EditarDoador" component = {EditarDoador}/>
+        <Stack.Screen name = "PerfilOng" component = {PerfilOng}/>
+        
 
       </Stack.Navigator>
 

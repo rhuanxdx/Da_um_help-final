@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'; 
 import { Text, View, StyleSheet, TextInput, Pressable, Image, ScrollView } from 'react-native';
 import axios from 'axios';
+import { vh, vw, vmax } from 'react-native-expo-viewport-units';
 
 
 export default function TelaCadastro({navigation}) {
@@ -202,7 +203,7 @@ export default function TelaCadastro({navigation}) {
       </View>
 
         <Pressable style={styles.btnCadastro} onPress={() => {
-        registroOrg(); navigation.navigate("Tabs")
+        registroOrg(); navigation.navigate("Login")
         }}>
           <Text style={styles.btnTxt}>Cadastra-se</Text>
         </Pressable>
@@ -227,58 +228,43 @@ const styles = StyleSheet.create({
   },
 
   inputbox:{
-    paddingHorizontal:20,
-    paddingVertical:8,
-    backgroundColor:'#F5F4F4',
-    borderRadius:25,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    marginBottom:10
+    paddingHorizontal: vw(10),
+    paddingVertical: vh(0.8),
+    backgroundColor: '#F5F4F4',
+    borderRadius: 25,
+    marginBottom: vh(1)
   },
 
-  
-
   logo:{
-
-    height:250,
-    width:250,
-    marginLeft:30,
-    marginBottom:30
+    marginLeft:vmax(5),
+    height: 250,
+    width: 250,
+    marginBottom: 30
   },
 
   btnTxt:{
     fontSize:30,
-    whiteSpace:'nowrap',
     color:'#FFFFFF',
-    
+    textAlign:'center'
   },
 
   btnCadastro:{
-    paddingHorizontal:65,
-    paddingVertical:13,
-    backgroundColor:'#38C7A5',
-    borderRadius:15,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    marginTop:15
-  
+    paddingHorizontal: vw(10),
+    paddingVertical: vh(1),
+    backgroundColor: '#38C7A5',
+    borderRadius: 15,
+    marginTop: vh(2)
   },
 
   txtInput:{
-
-    marginVertical:10,
-    border:0,
+    marginVertical: 10,
+    border: 0,
     borderBottomWidth: 1.5,
     borderColor: 'rgb(200,200,200)',
-    width:265,
+    width: 265,
     outlineStyle: 'none',
     outline: 'none',
     paddingVertical: 0,
-    placeholderTextColor:'red' 
   },
 
   txtInputgrande:{
@@ -291,7 +277,6 @@ const styles = StyleSheet.create({
     outlineStyle: 'none',
     outline: 'none',
     paddingVertical: 0,
-    placeholderTextColor:'red',
     fontSize:12
   },
 

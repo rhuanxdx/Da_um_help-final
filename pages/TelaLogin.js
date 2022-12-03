@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Image } from 'react-native';
-
+import { vh, vw, vmin, vmax } from 'react-native-expo-viewport-units';
 
 export default function TelaLogin({navigation}) {
 
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
   },
 
   logo:{
-    marginTop:35,
+    marginTop: vh(5),
     height:250,
     width:250,
-    marginBottom:35
+    marginBottom:vh(5)
   },
 
   tit:{
@@ -72,45 +72,38 @@ const styles = StyleSheet.create({
   btnTxt:{
     fontSize:20,
     color:'#2C2828',
-    paddingHorizontal:50
+    paddingHorizontal:50,
+    textAlign:'center',
     
   },
 
   btnTxtOng:{
     fontSize:20,
     color:'#2C2828',
+    textAlign:'center',
     
   },
 
   btnCadastro:{
-    marginTop:20,
-    paddingHorizontal:90,
-    paddingVertical:9,
+    textAlign:'center',
+    marginTop: vh(2),
+    width: vmin(90),
+    paddingVertical: vh(1.3),
     backgroundColor:'#e7e9e8',
     borderRadius:15,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    maxWidth:400,
-
   },
 
   btnLogin:{
-    marginTop:20,
-    paddingHorizontal:90,
-    paddingVertical:9,
+    marginTop: vh(2),
+    paddingVertical: vh(1.3),
     backgroundColor:'#38C7A5',
     borderRadius:15,
-    shadowColor: '#171717',
-    shadowOffset: {width: 2, height: 3},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    maxWidth:400,
+    width: vmin(90),
 
   },
 
   btnTxtLogin:{
+    textAlign:'center',
     fontSize:20,
     color:'white',
     paddingHorizontal:78
