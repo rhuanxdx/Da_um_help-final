@@ -49,7 +49,7 @@ export default function TelaCadastro({navigation,route}) {
           <Text style={styles.NomeOrg} >{Perfil.NomeOrg}</Text>
           <Text style={styles.endereço} >Cidade: {Perfil.Cidade} CEP:{Perfil.CEP}</Text>
           <Text style={styles.endereço} >{Perfil.Bairro}, {Perfil.Rua} {Perfil.Numero} {Perfil.Complemento}</Text>
-          <Text style={styles.desc} >Mollit culpa do labore sunt. Velit qui ea laborum occaecat. Veniam deserunt voluptate veniam quis sit officia sint id id non eu nostrud. Cillum labore voluptate laboris proident sunt.</Text>
+          <Text style={styles.desc} >{Perfil.DescricaoOrg}</Text>
           <Text style={styles.info} >Contato</Text>
           <Text style={styles.endereço} >{Perfil.EmailOrg}</Text>
           <Text style={styles.endereço} >{Perfil.Telefone}</Text>

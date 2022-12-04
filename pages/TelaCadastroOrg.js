@@ -22,6 +22,8 @@ export default function TelaCadastro({navigation}) {
   const [ChavePix, setChavePix] = useState('');
   const [Telefone, setTelefone] = useState('');
   const [Senha, setSenha] = useState('');
+  const [DescricaoOrg, setDescricaoOrg] = useState('');
+
 
 
 
@@ -40,9 +42,8 @@ export default function TelaCadastro({navigation}) {
       Complemento: Complemento,
       ChavePix: ChavePix,
       Telefone: Telefone,
-      Senha: Senha
-  
-  
+      Senha: Senha,  
+      DescricaoOrg: DescricaoOrg
   
     })
     .then(function (response) {
@@ -187,6 +188,16 @@ export default function TelaCadastro({navigation}) {
                   placeholder = "Insira seu Telefone"
                   keyboardType="text"
                   onChangeText={value => setTelefone(value)}
+                  >
+              </TextInput>
+      </View>
+
+      <View style={styles.inputbox}>
+              <TextInput 
+                  style={styles.txtInput}
+                  placeholder = "Insira uma breve descrição"
+                  keyboardType="text"
+                  onChangeText={value => setDescricaoOrg(value)}
                   >
               </TextInput>
       </View>
